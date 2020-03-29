@@ -1,0 +1,20 @@
+<!--components/gwc/index.wxml-->
+<view class='gwc'>
+  <button class='bg' bindtap="showPopup">购物车</button>
+  <button class='bgr' bindtap="msg">立即结算</button>
+</view>
+<van-popup
+  show="{{ show }}"
+  closeable
+  position="bottom"
+  custom-style="height: 50%"
+  bind:close="onClose"
+>
+  <view class='g_list'>
+    <!-- <view  wx:for="{{arr}}" wx:for-item="i" wx:key='unique'>
+      {{i.name}}*{{i.num}}
+    </view>  -->
+    <view  wx:for="{{arr}}" wx:for-item="i" wx:key='unique' class="ss"><list name='{{i.name}}' money='{{i.money}}' type='{{i.type}}' src='{{src}}' only='{{i.num}}' bind:callSomeFun="diandan"/></view>
+    <view class="g_sum">总计：￥{{sum}}</view>
+  </view>
+</van-popup>

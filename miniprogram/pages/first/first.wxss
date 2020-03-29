@@ -1,0 +1,31 @@
+.box{
+  display: flex;
+  /* background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%); */
+  padding-bottom: 60px
+}
+.list{
+  /* background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%); */
+  background-color: rgba(0, 0, 0, 0);
+  position: fixed;
+  text-align: center;
+  width: 30%;
+  height: 100%;
+  font-size: 20px
+}
+.van-hairline--bottom{
+background: linear-gradient(to right, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%);
+ background-blend-mode: normal,color-burn;
+}
+.list>view{
+  line-height: 50px;
+  height: 50px
+}
+.comp{
+  flex: 1;
+  margin-left:30%;
+}
+.chose{
+  background-color: rgba(0, 0, 0, 0);
+  background-image: none;
+  border-left:3px rgb(255,115,122) solid;
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "list":"../../components/list/index",
+    "gwc": "../../components/gwc/index"
+  }
+}

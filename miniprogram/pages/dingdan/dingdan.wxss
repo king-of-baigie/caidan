@@ -1,0 +1,24 @@
+/* miniprogram/pages/dingdan/dingdan.wxss */
+.head{
+  text-align: center;
+  font-weight: bold;
+  flex-basis: 100%;
+  font-size: 2rem;
+  border-bottom: 1px solid slategray 
+}
+.body{
+  margin-left: 20%;
+  flex-basis: 100%;
+  font-size: 20px;
+  padding: 5px 0;
+}
+.foot{
+  padding-left: 20%;
+  font-size: 2rem;
+  flex-basis: 100%;
+  border-top: 1px solid slategrey;
+}
+.box{
+  display: flex;
+  flex-wrap: wrap;
+}

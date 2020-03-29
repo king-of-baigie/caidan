@@ -1,0 +1,16 @@
+<view class='box'>
+  <view class='list'>
+    <view class="van-hairline--bottom {{a1}}" data-type='1' bindtap="handleClick">荤菜</view>
+    <view class="van-hairline--bottom {{a2}}" data-type='2' bindtap="handleClick">凉菜</view>
+    <view class="van-hairline--bottom {{a3}}" data-type='3' bindtap="handleClick">汤菜</view>
+    <view class="van-hairline--bottom {{a4}}" data-type='4' bindtap="handleClick">素菜</view>
+    <!-- <view class="van-hairline--bottom" bindtap="msg">点单</view> -->
+    <!-- <view class="van-hairline--bottom" bindtap="dd">订单</view> -->
+    <!-- <view class="van-hairline--bottom" bindtap="clear">清除</view> -->
+  </view>
+  <view class='comp' id="list">
+    <view  wx:for="{{arr}}" wx:for-item="i" wx:key='unique'><list name='{{i.name}}' money='{{i.money}}' type='{{i.type}}' src='{{src}}' only='{{i.num}}' bind:callSomeFun="diandan"/></view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+ <gwc arr="{{arr1}}" sum="{{sum}}" src="{{src}}" bind:msg="msg"  bind:g_dian="g_dian" bind:g_diandan="diandan"/>

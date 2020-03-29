@@ -1,0 +1,12 @@
+/* components/list/index.wxss */
+.list{
+  height: 6rem;
+  display: flex;
+  margin-bottom: 1rem
+}
+.msg{
+  flex: 1;
+}
+.ma{
+  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+}

@@ -1,0 +1,17 @@
+<!--components/list/index.wxml-->
+<view class="list">
+  <!-- <view class="images" bindtap="cheshi"/> -->
+  <view class='msg'>
+    <van-card
+      price="{{money}}"
+      tag="{{type}}"
+      title="{{name}}"
+      thumb="{{ src }}"
+      custom-class='ma'
+    >
+      <view slot="price-top">
+        <van-stepper value="{{ only }}" min="0" bind:change="onChange" />
+      </view>
+    </van-card>
+  </view>
+</view>
