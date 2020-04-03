@@ -1,10 +1,10 @@
 <!--miniprogram/pages/dingdan/dingdan.wxml-->
-<!-- <view class="box">
+<view class="box">
   <view class="head">订单详情</view>
   <view class="body"  wx:for="{{arr}}" wx:for-item="i" wx:key='unique'>
     {{i}}
   </view>
   <view class="foot">总计：￥{{sum}}</view>
 </view>
-<van-toast id="van-toast" /> -->
+<van-toast id="van-toast" />
 <button bindtap="zhifu">{{openid}}</button>

@@ -1,0 +1,10 @@
+<!--miniprogram/pages/dingdan1/index.wxml-->
+<view class="box">
+  <view class="head">订单详情</view>
+  <view class="body"  wx:for="{{arr}}" wx:for-item="i" wx:key='unique'>
+    {{i}}
+  </view>
+  <view class="foot">总计：￥{{sum}}</view>
+</view>
+<van-toast id="van-toast" />
+<view>{{openid}}</view>

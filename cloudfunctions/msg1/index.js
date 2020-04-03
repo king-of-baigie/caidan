@@ -15,10 +15,11 @@ exports.main = async (event, context) => {
   try {
     const result = await cloud.openapi.subscribeMessage.send({
       touser: 'o0IXs4jRK0209oABDgxhP3Lz5uEI',
+      page: "pages/dingdan1/index?openid=" + event.openid,
       lang: 'zh_CN',
       data: {
         thing3: {
-          value: '回锅肉*1'
+          value: "回锅肉"
         },
         character_string1: {
           value: 'y123'
@@ -34,9 +35,12 @@ exports.main = async (event, context) => {
       miniprogramState: 'developer'
     })
     console.log(result)
-    return result
+    return { result,event} 
   } catch (err) {
     console.log(err)
-    return err
+    return { 
+      err,
+      event
+    }
   }
 }

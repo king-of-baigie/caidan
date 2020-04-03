@@ -15,12 +15,15 @@ Page({
     a4:'',
     only:0,
     arr1:[],
-    sum:0
+    sum:0,
+    openid:'',
+    doc:''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.dd();
     let that=this
     const db = wx.cloud.database();
     Toast.loading({
@@ -46,6 +49,16 @@ Page({
         this.setData({
           src: res.fileList[0].tempFileURL
         })
+      },
+      fail: console.error
+    });
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'get',
+      success: function (res) {
+       that.setData({
+         openid: res.result.event.userInfo.openId
+       })
       },
       fail: console.error
     })
@@ -154,6 +167,8 @@ Page({
       }
   },
   msg:function(){//发送消息
+    this.dd();
+    let that = this
     let date=new Date();
     var year = date.getFullYear()
     var month = date.getMonth() + 1
@@ -163,20 +178,12 @@ Page({
     var second = date.getSeconds()
     var time = year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second
     wx.requestSubscribeMessage({
-      tmplIds: ['SQ7voLiekIEI5TbPimqsdyNY54o4ObCQDb2-AmcZk6E'],
+      tmplIds: ['SQ7voLiekIEI5TbPimqsdyNY54o4ObCQDb2-AmcZk6E','_n8tCdfJFwQJbi7DO_NA1JorfsiNsXyx3tMJkK5aItU'
+      ],
       success(res) { 
         console.log(res)
       },
       fail(res){
-        console.log(res)
-      }
-    })
-    wx.requestSubscribeMessage({
-      tmplIds: ['_n8tCdfJFwQJbi7DO_NA1JorfsiNsXyx3tMJkK5aItU'],
-      success(res) {
-        console.log(res)
-      },
-      fail(res) {
         console.log(res)
       }
     })
@@ -185,25 +192,44 @@ Page({
       name: 'msg',
       // 传给云函数的参数
       data:{
-        time:time
+        time:time,
+        openid:that.data.openid
       },
       success: function (res) {
         console.log(res) // 3
+        Toast.success('成功文案1');
       },
       fail: console.error
     })
-    // wx.cloud.callFunction({
-    //   // 云函数名称
-    //   name: 'msg1',
-    //   data: {
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'msg1',
+      data: {
+        time: time,                                                       
+        openid: that.data.doc
+      },
+      success: function (res) {
+        console.log(res) // 3
+        Toast.success('成功文案2');
+      },
+      fail: console.error
+    })
+  
+    
+    // wx.request({
+    //   url: 'http://127.0.0.1:8888/cheshi.do', //仅为示例，并非真实的接口地址
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   method:"post",
+    //   data:{
+    //     arr:that.data.a,
     //     time: time
     //   },
-    //   success: function (res) {
-    //     console.log(res) // 3
-    //   },
-    //   fail: console.error
+    //   success(res) {
+    //     console.log(res.data)
+    //   }
     // })
-    this.dd()
   },
   diandan(data){//传给子组件的函数，用于点菜
     for(let i=0;i<this.data.arr.length;i++){
@@ -288,6 +314,9 @@ Page({
                },
                success: function (res) {
                  console.log(res)
+                 that.setData({
+                   doc: resq.data[0]._id
+                 })
                }
              })
            }

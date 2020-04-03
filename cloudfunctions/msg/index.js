@@ -14,7 +14,7 @@ exports.main = async (event, context) => {
   // }
   try {
     const result = await cloud.openapi.subscribeMessage.send({
-      page: "pages/dingdan/dingdan?openid=12312",
+      page: "pages/dingdan/dingdan?openid=" + event.openid,
       touser: wxContext.OPENID,
       lang: 'zh_CN',
       data: {

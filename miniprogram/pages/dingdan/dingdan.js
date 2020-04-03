@@ -16,32 +16,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this
     this.setData({
       openid:options.openid
     })
+    console.log(this)
     Toast.loading({
       mask: true,
-      message: '加载中...',
+      message: "加载中。。。",
       duration: 0
     });
-    let that=this
     const db = wx.cloud.database();
-    wx.cloud.callFunction({
-      // 云函数名称
-      name: 'get',
-      success: function (res) {//调用云函数获取openid
-        db.collection('dingdan').where({
-          _openid: res.result.event.userInfo.openId
+    db.collection('dingdan').where({
+      _openid: that.data.openid
+    })
+    .get({//获取当前用户在dingdan数据库中的记录
+      success:res=>{
+        console.log(res)
+        that.setData({
+          arr:res.data[0].dd,
+          sum: res.data[0].sum
         })
-        .get({//获取当前用户在dingdan数据库中的记录
-          success:res=>{
-            console.log(res)
-            that.setData({
-              arr:res.data[0].dd,
-              sum: res.data[0].sum
-            })
-            Toast.clear();
-          }
+        Toast.clear();
+      },
+      fail:res=>{
+        that.setData({
+          arr: [1,2],
+          sum: 99999
         })
       }
     })
@@ -104,18 +105,4 @@ Page({
   onShareAppMessage: function () {
 
   },
-  zhifu(){
-    var a = Date.parse(new Date());
-    console.log(a);
-    console.log(typeof a)
-    wx.requestPayment({
-      timeStamp: a.toString(),
-      nonceStr: '12138',
-      package: 'prepay_id=123',
-      signType: 'MD5',
-      paySign: 'a22',
-      success(res) { console.log(res)},
-      fail(res) { console.log(res) }
-    })
-  }
 })
